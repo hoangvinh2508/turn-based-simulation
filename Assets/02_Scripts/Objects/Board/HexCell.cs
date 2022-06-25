@@ -1,18 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HexCell : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+namespace Game.Objects.Board {
+    public class HexCell : MonoBehaviour {
+        [SerializeField]
+        public Vector2Int _coordinate = Vector2Int.zero;
     }
 }

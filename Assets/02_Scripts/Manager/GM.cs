@@ -1,18 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
+
+using Game.Manager.Base;
+
 using UnityEngine;
 
-public class GM : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+namespace Game.Manager {
+    public class GM : Singleton<GM> {
+        [SerializeField]
+        private GameManager _gameManager = null;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+        [SerializeField]
+        private InputManager _inputManager = null;
+
+        public static GameManager Game {
+            get
+            {
+                Initialize();
+                return Instance._gameManager;
+            }
+        }
+
+        public static InputManager Input {
+            get {
+                Initialize();
+                return Instance._inputManager;
+            }
+        }
+
+        private static bool _initialized = false;
+
+        private static void Initialize() {
+            if (_initialized) {
+                return;
+            }
+
+            _initialized = true;
+        }
+    }   
 }
