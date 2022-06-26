@@ -13,7 +13,16 @@ namespace Game.Objects.Character {
         [SerializeField]
         private float _animSpeed = 5;
 
-        public int MaxHp { get; set; }
+        private int _maxHp = 0;
+
+        public int MaxHp {
+            get => _maxHp;
+            set {
+                _maxHp = value;
+                _currentHp = _maxHp;
+                _displayHp = _maxHp;
+            }
+        }
 
         private int _currentHp = 0;
         private float _displayHp = 0;

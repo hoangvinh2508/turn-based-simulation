@@ -16,6 +16,9 @@ namespace Game.Manager {
         [SerializeField]
         private EffectManager _effectManager = null;
 
+        [SerializeField]
+        private UIManager _uiManager = null;
+
         public static GameManager Game {
             get
             {
@@ -35,6 +38,13 @@ namespace Game.Manager {
             get {
                 Initialize();
                 return Instance._effectManager;
+            }
+        }
+        
+        public static UIManager Ui {
+            get {
+                Initialize();
+                return Instance._uiManager;
             }
         }
 

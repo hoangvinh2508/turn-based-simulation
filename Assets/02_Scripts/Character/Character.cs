@@ -42,7 +42,7 @@ namespace Game.Objects.Character {
                 _hpBar.CurrentHp = _hp;
                 if (_hp <= 0) {
                     GM.Game.RemoveCharacter(this, _team);
-                    PlayDieAndFadeOut();
+                    StartCoroutine(PlayDieAndFadeOut());
                 }
             }
         }
@@ -61,7 +61,7 @@ namespace Game.Objects.Character {
         }
 
         public void OnHit(int hp) {
-            GM.Effect.ShowHpNumber(hp, transform.position + new Vector3(Random.Range(0, 2), Random.Range(0, 2) + 3, 0));
+            GM.Effect.ShowHpNumber(hp, transform.position + new Vector3(Random.Range(-3, 3), Random.Range(0, 3) + 2, 0));
             CurrentHp -= hp;
             _characterAnim.PlayAnimation(AnimationType.Hit, () => {
                 _characterAnim.PlayAnimation(AnimationType.Idle);
@@ -72,7 +72,8 @@ namespace Game.Objects.Character {
             _skill.ProccessSkill(target);
         }
 
-        public void PlayDieAndFadeOut() {
+        public IEnumerator PlayDieAndFadeOut() {
+            yield return new WaitForSeconds(0.4f);
             _characterAnim.PlayAnimation(AnimationType.Die);
             _characterAnim.FadeOut(() => {
                 gameObject.SetActive(false);

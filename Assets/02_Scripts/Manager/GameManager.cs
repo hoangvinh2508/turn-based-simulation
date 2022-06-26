@@ -41,6 +41,7 @@ namespace Game.Manager {
 
         private List<Character> _enemies = new();
         private List<Character> _allies = new();
+        private float _gameSpeed = 1;
 
         private static Vector2Int[] Directions = {
             new(1, -1),
@@ -203,7 +204,7 @@ namespace Game.Manager {
         }
 
         public void ShowGameEnd() {
-            
+            GM.Ui.ShowGameEnd();
         }
 
         private void UpdatePriority() {
@@ -219,6 +220,19 @@ namespace Game.Manager {
                 _allies.Remove(character);
                 _allyDict.Remove(HexCell.CoordinateToIndex(character.Coordinate));
             }
+        }
+
+        public void PauseGame() {
+            Time.timeScale = 0;
+        }
+
+        public void UnPauseGame() {
+            Time.timeScale = _gameSpeed;
+        }
+
+        public void SetGameSpeed(float value) {
+            _gameSpeed = value;
+            UnPauseGame();
         }
     }
 }
