@@ -24,6 +24,10 @@ PrefabInstance:
       value: 0.045
       objectReference: {fileID: 0}
     - target: {fileID: 8634106760896737483, guid: a8bda68ee205359448e8a93a8770f6f4, type: 3}
+      propertyPath: _animationName
+      value: status/stun
+      objectReference: {fileID: 0}
+    - target: {fileID: 8634106760896737483, guid: a8bda68ee205359448e8a93a8770f6f4, type: 3}
       propertyPath: skeletonDataAsset
       value: 
       objectReference: {fileID: 11400000, guid: af96e11cdd26f4a43a2ee15543da3bd5, type: 2}

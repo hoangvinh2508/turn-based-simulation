@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: EnemyConfig
   m_EditorClassIdentifier: 
   _idleAnimName: action/idle
-  _hitAnimName: 
-  _attackAnimName: 
-  _moveAnimName: 
+  _hitAnimName: defense/hit-by-normal-attack
+  _attackAnimName: attack/range/cast-low
+  _moveAnimName: action/move-forward
+  _dieAnimName: status/stun
   _hitBoneName: 

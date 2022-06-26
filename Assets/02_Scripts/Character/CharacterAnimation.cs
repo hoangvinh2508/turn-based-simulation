@@ -1,5 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+
+using DG.Tweening;
 
 using Game.Config;
 
@@ -13,6 +16,7 @@ namespace Game.Objects.Character {
         Hit,
         Attack,
         Move,
+        Die,
     }
     public class CharacterAnimation : MonoBehaviour {
         [SerializeField]
@@ -21,26 +25,27 @@ namespace Game.Objects.Character {
         [SerializeField]
         private CharacterConfig _config;
 
-        public void PlayAnimation(AnimationType type) {
+        public void PlayAnimation(AnimationType type, Action callback = null) {
             var state = _animation.AnimationState;
-            switch (type) {
-                case AnimationType.Idle: {
-                    state.SetAnimation(0, _config.IdleAnimName, true);
-                    break;
-                }
-                case AnimationType.Attack: {
-                    state.SetAnimation(0, _config.AttackAnimName, false);
-                    break;
-                }
-                case AnimationType.Hit: {
-                    state.SetAnimation(0, _config.HitAnimName, false);
-                    break;
-                }
-                case AnimationType.Move: {
-                    state.SetAnimation(0, _config.MoveAnimName, true);
-                    break;
-                }
+            var animName = type switch {
+                AnimationType.Attack => _config.AttackAnimName,
+                AnimationType.Die => _config.DieAnimName,
+                AnimationType.Hit => _config.HitAnimName,
+                AnimationType.Idle => _config.IdleAnimName,
+                AnimationType.Move => _config.MoveAnimName,
+                _ => ""
+            };
+            var loop = type == AnimationType.Idle;
+            var entry = state.SetAnimation(0, animName, loop);
+            if (!loop) {
+                entry.Complete += trackEntry => {
+                    callback?.Invoke();
+                };
             }
+        }
+
+        public void FadeOut(TweenCallback callback = null) {
+            DOTween.To(() => _animation.Skeleton.a, x => _animation.Skeleton.a = x, 0, 0.5f).OnComplete(callback);
         }
     }
 }

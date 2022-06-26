@@ -19,6 +19,8 @@ namespace Game.Objects.Board {
 
         private Dictionary<int, HexCell> _matrix = new Dictionary<int, HexCell>();
 
+        public int BoardRadius => _boardRadius;
+
         public void CreateBoard() {
             var height = (_boardRadius - 1) * 2 + 1;
             var width = height * 2 - 1;

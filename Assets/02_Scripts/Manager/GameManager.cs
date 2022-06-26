@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Game.Objects.Board;
+using Game.Objects.Character;
 
 using UnityEngine;
 
@@ -58,14 +59,16 @@ namespace Game.Manager {
         }
 
         private void FillDefenseTeam() {
-            _allies.AddRange(FillCharactersWithRadius(0, _allyPrefab, ref _allyDict));
-            _allies.AddRange(FillCharactersWithRadius(1, _allyPrefab, ref _allyDict));
-            _allies.AddRange(FillCharactersWithRadius(2, _allyPrefab, ref _allyDict));
+            for (var i = 0; i < _board.BoardRadius / 2; i++) {
+                _allies.AddRange(FillCharactersWithRadius(i, _allyPrefab, ref _allyDict));
+            }
         }
 
         private void FillAttackTeam() {
-            _enemies.AddRange(FillCharactersWithRadius(4, _enemyPrefab, ref _enemyDict));
-            _enemies.AddRange(FillCharactersWithRadius(5, _enemyPrefab, ref _enemyDict));
+            var size = (_board.BoardRadius - 1) / 2;
+            for (var i = 0; i < size; i++) {
+                _enemies.AddRange(FillCharactersWithRadius(_board.BoardRadius - 1 - i, _enemyPrefab, ref _enemyDict));
+            }
         }
 
         private Character[] FillCharactersWithRadius(int radius, GameObject prefab, ref Dictionary<int, Character> dict) {
@@ -91,6 +94,15 @@ namespace Game.Manager {
         }
 
         public void OnGameLoopTrigger() {
+            // check defense
+            foreach (var ally in _allies) {
+                var enemies = GetAllNearByEnemies(ally);
+                if (enemies.Length == 0) continue;
+
+                var index = UnityEngine.Random.Range(0, enemies.Length);
+                ally.Attack(enemies[index]);
+            }
+            
             // Check attack
             foreach (var enemy in _enemies) {
                 var ally = GetAllyNearby(enemy);
@@ -103,22 +115,13 @@ namespace Game.Manager {
                     var minCoord = GetClosestCoordinate(enemy, ally);
                     var cell = _board.GetCell(minCoord);
                     var pos = cell.transform.position;
-                    enemy.CharacterMove.Move(pos);
+                    enemy.Move(pos);
 
                     _enemyDict.Remove(HexCell.CoordinateToIndex(enemy.Coordinate));
                     var index = HexCell.CoordinateToIndex(minCoord);
                     enemy.Coordinate = minCoord;
                     _enemyDict.Add(index, enemy);
                 }
-            }
-
-            // check defense
-            foreach (var ally in _allies) {
-                var enemies = GetAllNearByEnemies(ally);
-                if (enemies.Length == 0) continue;
-
-                var index = UnityEngine.Random.Range(0, enemies.Length);
-                ally.Attack(enemies[index]);
             }
 
             if (IsGameEnded()) {
@@ -208,7 +211,7 @@ namespace Game.Manager {
             _enemies.Sort(new EnemySort());
         }
 
-        private void RemoveCharacter(Character character, Character.Team team) {
+        public void RemoveCharacter(Character character, Character.Team team) {
             if (team == Character.Team.Attack) {
                 _enemies.Remove(character);
                 _enemyDict.Remove(HexCell.CoordinateToIndex(character.Coordinate));
@@ -216,8 +219,6 @@ namespace Game.Manager {
                 _allies.Remove(character);
                 _allyDict.Remove(HexCell.CoordinateToIndex(character.Coordinate));
             }
-
-            Destroy(character.gameObject);
         }
     }
 }

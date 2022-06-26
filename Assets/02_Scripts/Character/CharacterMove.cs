@@ -13,16 +13,18 @@ namespace Game.Objects.Character {
         private Vector3 _position;
         private bool _paused = false;
         private bool _isMove = false;
+        private Action _callback = null;
 
         private void Awake() {
             _transform = transform;
             _position = _transform.position;
         }
 
-        public void Move(Vector3 pos) {
+        public void Move(Vector3 pos, Action callback = null) {
             TargetPosition = pos;
             _position = _transform.position;
             _isMove = true;
+            _callback = callback;
         }
 
         private void Update() {
@@ -32,6 +34,7 @@ namespace Game.Objects.Character {
             _transform.position = _position;
             if (_position == TargetPosition) {
                 _isMove = false;
+                _callback?.Invoke();
             }
         }
     }
