@@ -9,11 +9,11 @@ using UnityEngine;
 namespace Game.Objects.Board {
     public class HexCell : MonoBehaviour {
         [SerializeField]
-        public Vector2Int _coordinate = Vector2Int.zero;
+        private Vector2Int _coordinate = Vector2Int.zero;
 
         [SerializeField]
         private TextMeshPro _debugText = null;
-
+        
         public Vector2Int Coordinate {
             get => _coordinate;
             set {
@@ -21,6 +21,8 @@ namespace Game.Objects.Board {
                 SetDebugText($"{_coordinate.x} {_coordinate.y}");
             }
         }
+
+        public int Index => CoordinateToIndex(Coordinate);
 
         public void SetDebugText(string text) {
             _debugText.text = text;

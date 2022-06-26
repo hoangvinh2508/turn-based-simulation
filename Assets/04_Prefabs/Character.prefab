@@ -126,6 +126,7 @@ GameObject:
   - component: {fileID: 8634106761207040070}
   - component: {fileID: 8634106761207040064}
   - component: {fileID: 8634106761207040071}
+  - component: {fileID: 5991800485493308122}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -163,6 +164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterAnim: {fileID: 8634106761207040071}
   _maxHp: 10
+  _move: {fileID: 5991800485493308122}
 --- !u!114 &8634106761207040071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,3 +179,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animation: {fileID: 8634106760896737483}
   _config: {fileID: 0}
+--- !u!114 &5991800485493308122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8634106761207040069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17d9f156945c46fa8680cd4949437ebf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moveSpeed: 10

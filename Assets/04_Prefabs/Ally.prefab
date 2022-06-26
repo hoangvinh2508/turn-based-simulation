@@ -12,6 +12,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8634106761207040064, guid: a8bda68ee205359448e8a93a8770f6f4, type: 3}
+      propertyPath: _team
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8634106761207040064, guid: a8bda68ee205359448e8a93a8770f6f4, type: 3}
       propertyPath: _maxHp
       value: 30
       objectReference: {fileID: 0}
