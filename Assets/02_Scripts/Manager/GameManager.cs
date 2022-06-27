@@ -57,6 +57,12 @@ namespace Game.Manager {
             FillDefenseTeam();
             FillAttackTeam();
             UpdatePriority();
+
+            var rect = _board.GetBounding();
+            var cam = FindObjectOfType<CameraController.CameraController>();
+            if (cam != null) {
+                cam.SetCameraBounds(rect);
+            }
         }
 
         private void FillDefenseTeam() {

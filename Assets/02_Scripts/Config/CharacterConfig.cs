@@ -18,9 +18,6 @@ namespace Game.Config {
         [SerializeField]
         private string _dieAnimName = "";
 
-        [SerializeField]
-        private string _hitBoneName = "";
-
         public string IdleAnimName => _idleAnimName;
 
         public string HitAnimName => _hitAnimName;
@@ -30,7 +27,5 @@ namespace Game.Config {
         public string MoveAnimName => _moveAnimName;
 
         public string DieAnimName => _dieAnimName;
-
-        public string HitBoneName => _hitBoneName;
     }
 }

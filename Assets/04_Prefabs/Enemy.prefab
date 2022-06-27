@@ -7,6 +7,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 848924449592810272, guid: a8bda68ee205359448e8a93a8770f6f4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.045
+      objectReference: {fileID: 0}
+    - target: {fileID: 848924449592810272, guid: a8bda68ee205359448e8a93a8770f6f4, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.045
+      objectReference: {fileID: 0}
+    - target: {fileID: 2143711158343456496, guid: a8bda68ee205359448e8a93a8770f6f4, type: 3}
+      propertyPath: skeletonDataAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: af96e11cdd26f4a43a2ee15543da3bd5, type: 2}
+    - target: {fileID: 6753882868235208441, guid: a8bda68ee205359448e8a93a8770f6f4, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7732685950721541174, guid: a8bda68ee205359448e8a93a8770f6f4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4f24e6343f29c457cbaeb9828927cafc, type: 2}
     - target: {fileID: 8634106760896737476, guid: a8bda68ee205359448e8a93a8770f6f4, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

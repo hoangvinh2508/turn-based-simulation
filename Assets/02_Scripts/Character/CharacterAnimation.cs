@@ -25,6 +25,10 @@ namespace Game.Objects.Character {
         [SerializeField]
         private CharacterConfig _config;
 
+        private void Start() {
+            _animation.Skeleton.a = 1;
+        }
+
         public void PlayAnimation(AnimationType type, Action callback = null) {
             var state = _animation.AnimationState;
             var animName = type switch {

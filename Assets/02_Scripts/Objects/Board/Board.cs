@@ -98,5 +98,33 @@ namespace Game.Objects.Board {
 
             return cells.ToArray();
         }
+
+        public Rect GetBounding() {
+            var minX = float.MaxValue;
+            var minY = float.MaxValue;
+            var maxX = float.MinValue;
+            var maxY = float.MinValue;
+            foreach (var ite in _matrix) {
+                var pos = ite.Value.transform.position;
+                if (pos.x < minX) {
+                    minX = pos.x;
+                }
+                if (pos.x > maxX) {
+                    maxX = pos.x;
+                }
+                if (pos.y < minY) {
+                    minY = pos.y;
+                }
+                if (pos.y > maxY) {
+                    maxY = pos.y;
+                }
+            }
+            minX -= _cellRadius * 2;
+            minY -= _cellRadius * 2;
+            maxX += _cellRadius * 2;
+            maxY += _cellRadius * 2;
+
+            return new Rect(minX, minY, maxX - minX, maxY - minY);
+        }
     }
 }

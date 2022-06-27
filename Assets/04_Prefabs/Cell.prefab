@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4843908689727947776}
   - component: {fileID: 4843908689727947778}
   - component: {fileID: 4843908689727947779}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 4843908690541696666}
   - component: {fileID: 4843908690541696661}
   - component: {fileID: 4843908690541696660}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cell
   m_TagString: Untagged
   m_Icon: {fileID: 0}

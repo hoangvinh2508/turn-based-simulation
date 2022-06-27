@@ -27,9 +27,16 @@ namespace Game.Manager {
         private int _speedIndex = 1;
 
         private void Start() {
+            if (_gameSpeeds.Length == 0) {
+                _gameSpeeds = new float[] {
+                    1
+                };
+                _speedIndex = 0;
+            }
             UpdateSpeedText();
             _pausedGameObject.SetActive(false);
             _gameEndGameObject.SetActive(false);
+            SetGameSpeed(_speedIndex);
         }
 
         public void OnButtonPaused() {
@@ -45,7 +52,15 @@ namespace Game.Manager {
         }
 
         public void OnButtonSpeed() {
-            _speedIndex = (_speedIndex + 1) % _gameSpeeds.Length;
+            SetGameSpeed(_speedIndex + 1);
+        }
+
+        private void SetGameSpeed(int index) {
+            index %= _gameSpeeds.Length;
+            if (index < 0 || index >= _gameSpeeds.Length) {
+                return;
+            }
+            _speedIndex = index;
             var speed = _gameSpeeds[_speedIndex];
             GM.Game.SetGameSpeed(speed);
             UpdateSpeedText();
