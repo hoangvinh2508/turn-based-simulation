@@ -130,6 +130,17 @@ namespace Game.Manager {
                     _enemyDict.Add(index, enemy);
                 }
             }
+            
+            // Clean dead character
+            var deadAlly = _allies.Where(ch => ch.CurrentHp <= 0).ToArray();
+            foreach (var ally in deadAlly) {
+                RemoveAlly(ally);
+            }
+
+            var deadEnemy = _enemies.Where(ch => ch.CurrentHp <= 0).ToArray();
+            foreach (var e in deadEnemy) {
+                RemoveEnemy(e);
+            }
 
             if (IsGameEnded()) {
                 ShowGameEnd();
@@ -185,7 +196,7 @@ namespace Game.Manager {
             foreach (var dir in Directions) {
                 var newCoord = coord + dir;
                 var index = HexCell.CoordinateToIndex(newCoord);
-                if (dict.ContainsKey(index)) {
+                if (dict.ContainsKey(index) && dict[index].CurrentHp > 0) {
                     return dict[index];
                 }
             }
@@ -218,14 +229,22 @@ namespace Game.Manager {
             _enemies.Sort(new EnemySort());
         }
 
-        public void RemoveCharacter(Character character, Character.Team team) {
-            if (team == Character.Team.Attack) {
-                _enemies.Remove(character);
-                _enemyDict.Remove(HexCell.CoordinateToIndex(character.Coordinate));
-            } else {
-                _allies.Remove(character);
-                _allyDict.Remove(HexCell.CoordinateToIndex(character.Coordinate));
-            }
+        // public void RemoveCharacter(Character character, Character.Team team) {
+        //     if (team == Character.Team.Attack) {
+        //         RemoveEnemy(character);
+        //     } else {
+        //         RemoveAlly(character);
+        //     }
+        // }
+
+        private void RemoveAlly(Character character) {
+            _allies.Remove(character);
+            _allyDict.Remove(HexCell.CoordinateToIndex(character.Coordinate));
+        }
+
+        private void RemoveEnemy(Character character) {
+            _enemies.Remove(character);
+            _enemyDict.Remove(HexCell.CoordinateToIndex(character.Coordinate));
         }
 
         public void PauseGame() {

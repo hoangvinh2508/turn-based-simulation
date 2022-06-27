@@ -41,7 +41,6 @@ namespace Game.Objects.Character {
                 _hp = Mathf.Max(value, 0);
                 _hpBar.CurrentHp = _hp;
                 if (_hp <= 0) {
-                    GM.Game.RemoveCharacter(this, _team);
                     StartCoroutine(PlayDieAndFadeOut());
                 }
             }
