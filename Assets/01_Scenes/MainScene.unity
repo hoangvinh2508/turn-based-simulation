@@ -284,6 +284,7 @@ GameObject:
   m_Component:
   - component: {fileID: 168185390}
   - component: {fileID: 168185391}
+  - component: {fileID: 168185392}
   m_Layer: 0
   m_Name: background
   m_TagString: Untagged
@@ -358,6 +359,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &168185392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168185389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1da148862e8c8a64293ba9354890163b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 519420031}
+  _sprite: {fileID: 168185391}
 --- !u!1 &250253365
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,7 +543,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 30
+  orthographic size: 35
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -575,6 +590,12 @@ MonoBehaviour:
   _zoomFactor: 3
   _zoomSpeed: 10
   _zoomLimit: {x: 4, y: 60}
+  _cameraBounds:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
 --- !u!1 &523051741
 GameObject:
   m_ObjectHideFlags: 0
